@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react'
+import {  BrowserRouter, Switch,Route,Link} from 'react-router-dom'
+import  Login from './Identification'
+import  Register from './Pageregister'
+import  Recherche from './Pagerecherche'
+import PageHome from './pagehome'
+import Favorite from './components/addtofavorite'
+import Addmoviepage from './components/addmoviepage'
+import Editmovie from './components/editmovie'
+import "./csscomponent.css";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>   <BrowserRouter>
+   
+      <Route exact path="/" component={Login}></Route>
+      <Route exact path="/register" component={Register}></Route>
+      <Route exact path="/recherche" component={Recherche}></Route>
+      <Route exact={true}  path="/home" component={PageHome}></Route>
+      <Route exact path="/favorite" component={Favorite}></Route>
+      <Route exact path="/addmovies" component={Addmoviepage}></Route>
+      <Route exact path="/Editermovie" component={Editmovie}></Route>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
