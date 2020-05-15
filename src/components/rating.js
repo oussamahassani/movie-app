@@ -12,10 +12,6 @@ function Star ({ onClickStar, Checked })  {
     );
   };
 
-
-
-
-
 class Rating extends React.Component {
   constructor(props) {
     super(props);

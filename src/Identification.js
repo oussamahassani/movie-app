@@ -1,10 +1,11 @@
 import React, { useState  , Component} from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import swal from 'sweetalert';
 import "./csscomponent.css";
 import { Route , Link} from 'react-router-dom'
 
-
-export default class Login extends Component {
+let useradmin = []
+ class Login extends Component {
   constructor(props) {
     super(props);
     this.error  = React.createRef();
@@ -12,6 +13,8 @@ export default class Login extends Component {
   this.state = {
        login : '' ,
        password : ''  ,  
+       hidden: true,
+
        
        
 
@@ -42,22 +45,43 @@ export default class Login extends Component {
   this.error.current.style= "color : green"
   console.log("sufissante")
   }
-  else
+  else if (this.state.password.length<=8)
+  {
   this.error.current.innerHTML =  " merci de choisir une strong passe word" ;
   this.error.current.style='color : red' ;
   console.log("innnsufissante")
   }
+  }
 
  clickme = e => {  if ( localStorage.getItem("email") == this.state.login)
-                   {
+                   {  
+                    useradmin.length = 0;
       console.log('The link was clicked.'); 
-      alert ("bien venu" + " " +localStorage.getItem("userfirstname"))
-                    }
-      if (this.state.login !== localStorage.getItem("email") | this.state.password =="" ) 
+      console.log(useradmin)
+      swal("HELLO!", localStorage.getItem("userfirstname"), "success");
+     // alert ("bien venu" + " " +localStorage.getItem("userfirstname"))
+    
+    
+    }
+      if (this.state.login !== localStorage.getItem("email") && this.state.password =="" ) 
        {
-         alert("merci de remplire les chamaps")
+        // alert("merci de remplire les chamaps")
+        swal("OPPPS!", "something is wrong", "error");
          e.preventDefault()
-    }}
+    }
+     if(this.setState.login=="admin"  | this.state.password=="admin")
+     {
+     // alert("bien venu admin")
+     swal("HELLO!", localStorage.getItem("userfirstname"), "success");
+      useradmin.push("admin","admin")
+      console.log(useradmin)
+      
+     }
+  }
+    toggleShow = (e) =>{
+      this.setState({ hidden: !this.state.hidden });
+      e.preventDefault()
+    }
     render() {
 return (
 
@@ -77,7 +101,12 @@ return (
       <form method="post" action="index.html">
         <p><input type="text" name="login"  placeholder="Username or Email" required onChange={this.onchangemail} required/></p>
         <small className="small" ref={this.errormail}>alphabetique</small>
-        <p><input type="password" name="password" placeholder="Password" required onChange={this.onchngepasword} required/></p>
+        <div style={{display:"flex" ,justifyContent:"flex-start"}}>
+        <p><input className="inputwitheys"  type={this.state.hidden ? "password" : "text"} name="password" placeholder="Password" required onChange={this.onchngepasword} required>
+        </input>  <button onClick={this.toggleShow}><i class="fa fa-eye-slash" aria-hidden="true"></i>
+                              </button>
+        </p>
+        </div>
         <small className="small" ref={this.error}> mot de passe obligatoir</small>
         <p class="remember_me">
           <label>
@@ -115,3 +144,4 @@ return (
 )
 }
 }
+export { Login as default, useradmin}

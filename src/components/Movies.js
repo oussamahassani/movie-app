@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import '../csscomponent.css';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Favorite from './addtofavorite';
+import swal from 'sweetalert';
 import listOfMovies from '../Listeofmovies'
 import {  BrowserRouter, Switch,Route,Link} from 'react-router-dom'
+import {useradmin}  from '../Identification'
 let myFavoriteMovies = [];
 let ids = [] ;
 
 function Filmfavories(props) {
-	return <button type="button" onClick={props.onClick} className="add button" color="success"  > Removetofavoris</button>;
+	return <img  onClick={props.onClick}  src="https://image.flaticon.com/icons/png/512/67/67034.png" alt="removetofavorit"  width="30" height="30"></img>
+	//<button type="button" onClick={props.onClick} className="add button" color="success"  > Removetofavoris</button>;
 }
 function Rating({ number }) {
 	let ratings = ""
@@ -23,18 +26,36 @@ function Rating({ number }) {
 }
 
 function FilmNotfavoris(props) {
-	return <button onClick={props.onClick} className="remove button" value="removetofavorie" >Addtofavori</button>;
+	return  <img  onClick={props.onClick}  src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/docomo/205/heavy-black-heart_2764.png" srcset="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/docomo/205/heavy-black-heart_2764.png 2x" alt="Red Heart" width="30" height="30"></img>
+	/*<span onClick={props.onClick} className="remove button" value="removetofavorie" > 
+	❤️ Addtofavori</span>;*/
 }
+
+
+
 class Movies extends Component {
 	constructor(props) {
 		super(props);
 		this.addFavorite = this.addFavorite.bind(this);
 		this.deleteFavorite = this.deleteFavorite.bind(this);
-		this.state = {  modal: false };
+		this.state = {  modal: false , hide : false };
 		this.toggle = this.toggle.bind(this);
 		this.divmovieid = React.createRef();
+		this.textInput = React.createRef();
 	}
 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	toggle() {
 		const id = this.props.identite;
@@ -66,12 +87,16 @@ class Movies extends Component {
 	}
 
 	hidemovie =  e =>{
-
+	 if(useradmin.length>0)
+	 {
 	 let a =  e.target;
 		a.style.display="none"
-        this.divmovieid.current.style="display : none"
+		this.divmovieid.current.style="display : none"
 		e.preventDefault()
-
+	 }
+	 else
+	 swal("hey hey ", "your are  not abel to dot that");
+	// alert("vous navez pas l'acces a effacer un film")
 	}
 	 
 	render() {
@@ -83,35 +108,48 @@ class Movies extends Component {
 		} else {
 			favBtn = <FilmNotfavoris onClick={this.addFavorite} />;
 		}
+		if(this.textInput.current != null) {
+		  this.textInput.current.style=" color: yellow"
+		
+		  }
+		  
+	 
+
+
+	
+	
 		return (
 			<div ref={this.divmovieid} className="flexworper" id={this.props.identite}>
+				<button className="button add" ><Link to={`/watch=?${this.props.identite}`}><span style={{color:"black",fontSize:"18px"}}>watch</span></Link></button>
 				<div className="panel panel-default">
 				<p  onClick={this.hidemovie} style={{float:"right"}} >❌</p>
 					<div className="panel-heading">
-						{this.props.name}
+					 <h3 className="text-centre clor">	{this.props.name} </h3>
 					</div>
-					<div><img src={this.props.img} width="60%" alt="filmimage"></img></div>
+					<div><img  className="centerimage" src={this.props.img} width="60%" alt="filmimage"></img></div>
 					<div className="panel-body">
-						Year: {this.props.year}
+						<p ref={this.textInput} className="text-centre ">Year: {this.props.year}</p>
 					</div>
 
 				</div>
 				<div>
-					<button className="button info" onClick={this.toggle}><span >detaile film</span></button>
+					<button className="button info" onClick={this.toggle}   ><span>Detaile film</span></button>
 					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-						<ModalHeader toggle={this.toggle}><span style={{ color: "red", fontSize: "25px" }}>detaille film</span></ModalHeader>
+						<ModalHeader toggle={this.toggle}><p className="text-centre "  style={{ color: "red", fontSize: "25px" }}>Detaille Film</p></ModalHeader>
 						<ModalBody>
 							<div style={{ textAlign: "center" }}>
-								<p> name: <span style={{ color: "purple" }}>{this.props.name}</span>  </p>  <br></br>
-								<p>  year :<span style={{ color: "purple" }}>  {this.props.year} </span> </p><br></br>
-								<p >  decription : <span style={{ color: "purple" }}>{this.props.decription}</span>    </p> <br></br>
-								<p> rating :<Rating number={this.props.rating}></Rating></p>  <br></br>
+								<p id="accesadmin"> Name: <span style={{ color: "purple" }}>{this.props.name}</span>  </p>  <br></br>
+								<p>  Year :<span style={{ color: "purple" }}>  {this.props.year} </span> </p><br></br>
+								<p >  Decription : <span style={{ color: "purple" }}>{this.props.decription}</span>    </p> <br></br>
+								<p> Rating :<Rating number={this.props.rating}></Rating></p>  <br></br>
 							</div>
 						</ModalBody>
 						<ModalFooter>
-							   
+						<div id="accesadmin">
 							<Button color="secondary" onClick={this.toggle}>Cancel</Button>
-							<Button  ><Link to ="/Editermovie">    editer  movie numero {this.props.identite} </Link> </Button>
+						
+		{useradmin.length >0 ?	<Button  ><Link to ="/Editermovie" id="editemovie">Editer  movie numero {/* {this.props.identite}*/ } </Link> </Button> : null }
+							</div>
 						</ModalFooter>
 					</Modal>
 					{favBtn}

@@ -49,7 +49,7 @@ export default class Recherche extends Component {
 
             filtrerating = (num,arr) => {
               console.log(this.state.movies)
-            return arr.filter((elem) => (elem.rating === Number(num)))
+            return arr.filter((elem) => (elem.rating >= Number(num)))
              }
 
              filterbycher = event => {
@@ -68,7 +68,7 @@ export default class Recherche extends Component {
     <div className="App">
                  <Nav/>
 
-      <header> <button onClick={this.filterbycher} >filter</button>
+      <header> <button className =" btn btn-primary btn-lg" onClick={this.filterbycher} >filter</button>
       <div style={{float:'right',marginRight:'50px'}}> <Rating onClickFn= {({ i }) => this.onClickFn(i)} indexChecked={this.state.startchekd}  ></Rating></div>
         <h1>Movie Data</h1>
       
