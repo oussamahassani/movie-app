@@ -120,22 +120,24 @@ class Movies extends Component {
 	
 		return (
 			<div ref={this.divmovieid} className="flexworper" id={this.props.identite}>
-				<button className="button add" ><Link to={`/watch=?${this.props.identite}`}><span style={{color:"black",fontSize:"18px"}}>watch</span></Link></button>
 				<div className="panel panel-default">
-				<p  onClick={this.hidemovie} style={{float:"right"}} >❌</p>
+				<button className="button add" ><Link to={`/watch=?${this.props.identite}`}><span style={{color:"black",fontSize:"18px"}}>watch</span></Link></button>
+				
 					<div className="panel-heading">
+					<p  onClick={this.hidemovie} style={{float:"right"}} >❌</p>
 					 <h3 className="text-centre clor">	{this.props.name} </h3>
 					</div>
-					<div><img  className="centerimage" src={this.props.img} width="60%" alt="filmimage"></img></div>
+					<div><img  className="centerimage" src={this.props.img} width="180px" alt="filmimage"></img></div>
 					<div className="panel-body">
 						<p ref={this.textInput} className="text-centre ">Year: {this.props.year}</p>
 					</div>
 
-				</div>
+			
+				<div className="flex-between">
 				<div>
-					<button className="button info" onClick={this.toggle}   ><span>Detaile film</span></button>
+					<button className="button info" onClick={this.toggle}   ><span>Movies details</span></button>
 					<Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-						<ModalHeader toggle={this.toggle}><p className="text-centre "  style={{ color: "red", fontSize: "25px" }}>Detaille Film</p></ModalHeader>
+						<ModalHeader toggle={this.toggle}><p className="text-centre "  style={{ color: "red", fontSize: "25px" }}>Movies details</p></ModalHeader>
 						<ModalBody>
 							<div style={{ textAlign: "center" }}>
 								<p id="accesadmin"> Name: <span style={{ color: "purple" }}>{this.props.name}</span>  </p>  <br></br>
@@ -148,15 +150,16 @@ class Movies extends Component {
 						<div id="accesadmin">
 							<Button color="secondary" onClick={this.toggle}>Cancel</Button>
 						
-		{useradmin.length >0 ?	<Button  ><Link to ="/Editermovie" id="editemovie">Editer  movie numero {/* {this.props.identite}*/ } </Link> </Button> : null }
+		{useradmin.length >0 ?	<Button  ><Link to ="/Editermovie" id="editemovie">Edit  movie Number {/* {this.props.identite}*/ } </Link> </Button> : null }
 							</div>
 						</ModalFooter>
 					</Modal>
-					{favBtn}
+				
 				</div>
+				{favBtn}
 
-
-
+				</div>
+				</div>
 				{/*	<input type="button" value="opendetail" </input> */}
 			
 

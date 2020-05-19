@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,  {useRef} from 'react'
 import '../csscomponent.css'
 
 
@@ -15,23 +15,23 @@ function Rating({ number }) {
 } 
 
 export default function Mapfavoritemovie(props) {
-
+	const cardfavorite = useRef('')
    function hidemovie (e){
      
         
         let a =  e.target;
            a.style.display="none"
-          document.getElementById("cardfavorite").style="display : none"
+		   cardfavorite.current.style="display : none"
            e.preventDefault()
         
     }
     return (
 
-    <div className="cardfavorite" id="cardfavorite">
+    <div className="cardfavorite" id="cardfavorite" ref = {cardfavorite}>
       	<div className="c" id="c">
 	   <p  onClick={hidemovie} style={{float:"right"}} >❌</p>
 		<div className="panel-heading">
-		 <h3 className="text-centre clor">Titre :	{props.name} </h3>
+		 <h3 className="text-centre clor">Titel :	{props.name} </h3>
 		</div>
 		<div><img src={props.img} width="200px" alt="filmimage"></img></div>
 		<div className="panel-body">

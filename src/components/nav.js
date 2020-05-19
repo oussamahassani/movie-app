@@ -83,7 +83,7 @@ setstate({ name: namestorege });
       <em id="addmovie"> <Link to='/addmovies'>Addmovies</Link> </em> 
       </li>
       <li className="nav-item">
-      <em id="favorite"><Link to='/favorite'>favorite</Link> </em> 
+      <em id="favorite"><Link to='/favorite'>Favorite</Link> </em> 
  </li>
     </ul>
     <ul className=" ml-auto nav-flex-icons">
@@ -96,8 +96,8 @@ setstate({ name: namestorege });
     </ul>
     </Route>
              
-  <div style={{float:"right",color:"#223343",fontSize:"20px",fontFamily:"sans-serif",padding:"10px 10px"}}> bien venue {name}
-  <button  className="logout button"  onClick ={alertbyby}>  logout </button></div>    {/*<Link to="/">log out</Link>*/ }
+  <div style={{float:"right",color:"#223343",fontSize:"20px",fontFamily:"sans-serif",padding:"10px 10px"}}>WELCOM {name}
+  <button  className="logout button"  onClick ={alertbyby}>  Logout </button></div>    {/*<Link to="/">log out</Link>*/ }
   </div>
 </nav>
         </div>

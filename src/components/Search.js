@@ -3,7 +3,7 @@ import '../csscomponent.css'
 function Search ({ handleInput , search}   ) {
 
 	return (
-		<section className="searchbox-wrap">
+		<section className="searchbox-wrap margin-bottom">
 			<input 
 				type="text" 
 				placeholder="Search for a movie..." 

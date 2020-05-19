@@ -93,7 +93,7 @@ let x = regx.test(this.email.current.value)
         <nav >
           <Route>
             <div className="nav">
-              <span  ><Link className="clor" to="/" >Identification</Link></span>
+              <span  ><Link className="clor" to="/" >Identification</Link></span><span className="espace" ></span>
               <span><Link className="clor" to="/register" >Register</Link></span>
               <span ></span>
             </div>

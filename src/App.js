@@ -25,7 +25,7 @@ function App() {
       <Route exact path="/test" component={Test}></Route>
       <Route  path="/watch:id" component={Watchmoves} ></Route>
       <Route exact path="/404" component={NotFound} />
-     {/* <Redirect exact path ="***" to="/404" /> */}
+      <Redirect exact path ="***" to="/404" /> 
     </Switch>
       </BrowserRouter>
     </div>
