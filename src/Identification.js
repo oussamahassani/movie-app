@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 import "./csscomponent.css";
 import { Route , Link} from 'react-router-dom'
 
+
 let useradmin = []
  class Login extends Component {
   constructor(props) {
@@ -86,7 +87,8 @@ let useradmin = []
 return (
 
     <>
-     <nav >
+  
+     <nav>
       <Route>
      <div className="nav">
        <span  ><Link className="clor" to="/" >Identification</Link></span> <span className="espace" ></span>
@@ -103,12 +105,12 @@ return (
         <small className="small" ref={this.errormail}>alphabetique</small>
         <div style={{display:"flex" ,justifyContent:"flex-start"}}>
         <p><input className="inputwitheys"  type={this.state.hidden ? "password" : "text"} name="password" placeholder="Password" required onChange={this.onchngepasword} required>
-        </input>  <button onClick={this.toggleShow}><i class="fa fa-eye-slash" aria-hidden="true"></i>
+        </input>  <button onClick={this.toggleShow}><i className="fa fa-eye-slash" aria-hidden="true"></i>
                               </button>
         </p>
         </div>
         <small className="small" ref={this.error}> mot de passe obligatoir</small>
-        <p class="remember_me">
+        <p className="remember_me">
           <label>
             <input type="checkbox" name="remember_me" id="remember_me"/>
             Remember me on this computer

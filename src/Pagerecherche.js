@@ -2,12 +2,9 @@
 import React, { Component } from 'react';
 import './csscomponent.css'
 import Search from './components/Search'
-import Results from './components/Results'
-import Popup from './components/Popup'
+import Spiner from './components/spiner'
 import listOfMovies from './Listeofmovies'
 import Movies   from './components/Movies'
-import Favorite  from './components/addtofavorite'
-import AddMovie from  './components/AddMovie'
 import Nav from'./components/nav'
 import Rating from './components/rating'
 export default class Recherche extends Component {
@@ -18,7 +15,8 @@ export default class Recherche extends Component {
     this.state = {
         movies: listOfMovies,
         contenudestate : " ",
-        startchekd : 3
+        startchekd : 3,
+    
     };
      }
       
@@ -60,14 +58,18 @@ export default class Recherche extends Component {
               };
 
              
-             
+              
+              
+              
+              
+              
 
    render() {
 
   return (
     <div className="App">
                  <Nav/>
-
+                   
       <header> <button className =" btn btn-primary btn-lg" onClick={this.filterbycher} >filter</button>
       <div style={{float:'right',marginRight:'50px'}}> <Rating onClickFn= {({ i }) => this.onClickFn(i)} indexChecked={this.state.startchekd}  ></Rating></div>
         <h1>Movie Data</h1>
